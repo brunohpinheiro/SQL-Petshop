@@ -11,15 +11,14 @@ Abaixo estão as representações visuais da estrutura do banco de dados, modela
 O MER foca nas regras conceituais e entidades.
 
 ### Diagrama Entidade-Relacionamento (DER)
-RACA	(id, raca)
-PORTE	(id, porte, percentual)
-CLIENTE	(id, nome, cpf, email, telefone, rua, número, cep, cidade, estado, ativo)
-SERVICO	(id, servico, preco, duracao, ativo)
-STATUS	(id, status)
-PET	(id, nome, id_cliente (FK), id_porte (FK), id_raca (FK), ativo)
-AGENDAMENTO	(id, preco, id_pet (FK), data_agend, hora_agend, id_status(FK), ativo)
-AGENDAMENTO_SERVICO	(id, valor_servico, id_agendamento (FK), id_servico (FK))
-O DER apresenta a estrutura lógica, chaves e tipos de dados pronta para o MySQL.
+| **RACA** | (<u>id</u>, raca) |
+| **PORTE** | (<u>id</u>, porte, percentual) |
+| **CLIENTE** | (<u>id</u>, nome, cpf, email, telefone, rua, número, cep, cidade, estado, ativo) |
+| **SERVICO** | (<u>id</u>, servico, preco, duracao, ativo) |
+| **STATUS** | (<u>id</u>, status) |
+| **PET** | (<u>id</u>, nome, id_cliente (FK), id_porte (FK), id_raca (FK), ativo) |
+| **AGENDAMENTO** | (<u>id</u>, preco, id_pet (FK), data_agend, hora_agend, id_status(FK), ativo) |
+| **AGENDAMENTO_SERVICO** | (<u>id</u>, valor_servico, id_agendamento (FK), id_servico (FK)) |
 
 ## Tecnologias e Ferramentas
 Modelagem: brModelo
@@ -36,17 +35,19 @@ RN04: Agendamento: Cada registro de agendamento é restrito a um pet por vez.
 RN05: Composição: Um agendamento deve conter ao menos um serviço vinculado.
 RN06: O valor final do serviço é calculado multiplicando o Preço Base (PB) pelo multiplicador de porte:
 
-Serviço                       Preço Base (PB)
-Banho e secagem               R$ 50,00
-Escova                        R$ 40,00
-Limpeza dos ouvidos           R$ 30,00
-Corte das unhas               R$ 20,00
-Higiene bucal                 R$ 15,00
+| Serviço | Preço Base (PB) |
+| :--- | :--- |
+| Banho e secagem | R$ 50,00 |
+| Escova | R$ 40,00 |
+| Limpeza dos ouvidos | R$ 30,00 |
+| Corte das unhas | R$ 20,00 |
+| Higiene bucal | R$ 15,00 |
 
-Multiplicadores por Porte
-Pequeno: PB x 0.9 (90%)
-Médio: PB x 1.0 (100%)
-Grande: PB x 1.1 (110%)
+| Porte | Multiplicador | Percentual |
+| :--- | :--- | :--- |
+| Pequeno | PB x 0.9 | 90% |
+| Médio | PB x 1.0 | 100% |
+| Grande | PB x 1.1 | 110% |
 
 ## Implementação Técnica
 Triggers: Atualiza automaticamente o preço do serviço agendado e o preço total do agendamento.
