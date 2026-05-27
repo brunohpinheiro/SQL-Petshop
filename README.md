@@ -11,14 +11,16 @@ Abaixo estão as representações visuais da estrutura do banco de dados, modela
 O MER foca nas regras conceituais e entidades.
 
 ### Diagrama Entidade-Relacionamento (DER)
-| **RACA** | (<u>id</u>, raca) |
-| **PORTE** | (<u>id</u>, porte, percentual) |
-| **CLIENTE** | (<u>id</u>, nome, cpf, email, telefone, rua, número, cep, cidade, estado, ativo) |
-| **SERVICO** | (<u>id</u>, servico, preco, duracao, ativo) |
-| **STATUS** | (<u>id</u>, status) |
-| **PET** | (<u>id</u>, nome, id_cliente (FK), id_porte (FK), id_raca (FK), ativo) |
-| **AGENDAMENTO** | (<u>id</u>, preco, id_pet (FK), data_agend, hora_agend, id_status(FK), ativo) |
-| **AGENDAMENTO_SERVICO** | (<u>id</u>, valor_servico, id_agendamento (FK), id_servico (FK)) |
+| Entidade | Atributos e Relacionamentos |
+| :--- | :--- |
+| **RACA** | (id (PK), raca) |
+| **PORTE** | (id (PK), porte, percentual) |
+| **CLIENTE** | (id (PK), nome, cpf, email, telefone, rua, número, cep, cidade, estado, ativo) |
+| **SERVICO** | (id (PK), servico, preco, duracao, ativo) |
+| **STATUS** | (id (PK), status) |
+| **PET** | (id (PK), nome, id_cliente (FK), id_porte (FK), id_raca (FK), ativo) |
+| **AGENDAMENTO** | (id (PK), preco, id_pet (FK), data_agend, hora_agend, id_status(FK), ativo) |
+| **AGENDAMENTO_SERVICO** | (id (PK), valor_servico, id_agendamento (FK), id_servico (FK)) |
 
 ## Tecnologias e Ferramentas
 Modelagem: brModelo
@@ -29,11 +31,17 @@ IDE: MySQL Workbench
 Para garantir a consistência dos dados, o sistema segue as seguintes diretrizes:
 
 RN01: Atendimento exclusivo para a espécie canina.
+
 RN02: Fidelização: Um cliente deve possuir no mínimo 1 pet para constar no sistema.
+
 RN03: Propriedade: Cada pet pertence a um único cliente (relação 1:N).
+
 RN04: Agendamento: Cada registro de agendamento é restrito a um pet por vez.
+
 RN05: Composição: Um agendamento deve conter ao menos um serviço vinculado.
+
 RN06: O valor final do serviço é calculado multiplicando o Preço Base (PB) pelo multiplicador de porte:
+
 
 | Serviço | Preço Base (PB) |
 | :--- | :--- |
