@@ -1,16 +1,16 @@
 # SQL-Petshop
 Projeto acadêmico colaborativo de banco de dados SQL desenvolvido no MySQL Workbench. Contempla o ciclo completo de dados: modelagem, criação de tabelas, povoamento e atualização. Implementa lógica avançada com Joins, Views, Procedures, Triggers e criação de Índices para otimização de consultas e automação de processos.
 
-Modelagem de Dados
+## Modelagem de Dados
 Abaixo estão as representações visuais da estrutura do banco de dados, modeladas no [brModelo](https://www.brmodeloweb.com/).
 
-Modelo Entidade-Relacionamento (MER)
+### Modelo Entidade-Relacionamento (MER)
 <div align="center">
-  <img src="MER.PNG" alt="Modelo Entidade Relacionamento" width="527px">
+  <img src="MER.png" alt="Modelo Entidade Relacionamento" width="527px">
 </div>
 O MER foca nas regras conceituais e entidades.
 
-Diagrama Entidade-Relacionamento (DER)
+### Diagrama Entidade-Relacionamento (DER)
 RACA	(id, raca)
 PORTE	(id, porte, percentual)
 CLIENTE	(id, nome, cpf, email, telefone, rua, número, cep, cidade, estado, ativo)
@@ -21,12 +21,12 @@ AGENDAMENTO	(id, preco, id_pet (FK), data_agend, hora_agend, id_status(FK), ativ
 AGENDAMENTO_SERVICO	(id, valor_servico, id_agendamento (FK), id_servico (FK))
 O DER apresenta a estrutura lógica, chaves e tipos de dados pronta para o MySQL.
 
-Tecnologias e Ferramentas
+## Tecnologias e Ferramentas
 Modelagem: brModelo
 Banco de Dados: SQL
 IDE: MySQL Workbench
 
-Regras de Negócio (RN)
+## Regras de Negócio (RN)
 Para garantir a consistência dos dados, o sistema segue as seguintes diretrizes:
 
 RN01: Atendimento exclusivo para a espécie canina.
@@ -48,7 +48,7 @@ Pequeno: PB x 0.9 (90%)
 Médio: PB x 1.0 (100%)
 Grande: PB x 1.1 (110%)
 
-Implementação Técnica
+## Implementação Técnica
 Triggers: Atualiza automaticamente o preço do serviço agendado e o preço total do agendamento.
 Procedures: Facilitam o cadastro, a exclusão lógica e a atualização de dados de pets, clientes e serviços,
 Índices: Otimização de busca por CPF de cliente e nome do pet.
