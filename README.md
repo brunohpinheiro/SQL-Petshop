@@ -8,7 +8,7 @@ Abaixo estão as representações visuais da estrutura do banco de dados, modela
 <div align="center">
   <img src="MER.png" alt="Modelo Entidade Relacionamento" width="527px">
 </div>
-O MER foca nas regras conceituais e entidades.
+<p align="center">O MER foca nas regras conceituais e entidades.</p> 
 
 ### Diagrama Entidade-Relacionamento (DER)
 | Entidade | Atributos e Relacionamentos |
@@ -58,9 +58,9 @@ RN06: O valor final do serviço é calculado multiplicando o Preço Base (PB) pe
 | Grande | PB x 1.1 | 110% |
 
 ## Implementação Técnica
-Triggers: Atualiza automaticamente o preço do serviço agendado e o preço total do agendamento.
-Procedures: Facilitam o cadastro, a exclusão lógica e a atualização de dados de pets, clientes e serviços,
-Índices: Otimização de busca por CPF de cliente e nome do pet.
-Views: Relatórios de faturamento mensal, faturamento por serviço, histórico de atendimento do pet e lista de clientes agendados para o dia.
+Triggers: Atualiza automaticamente o preço do serviço agendado e o preço total do agendamento.  
+Procedures: Facilitam o cadastro, a exclusão lógica e a atualização de dados de pets, clientes e serviços.  
+Índices: Otimização de busca por CPF de cliente e nome do pet.  
+Views: Relatórios de faturamento mensal, faturamento por serviço, histórico de atendimento do pet e lista de clientes agendados para o dia.  
 
 
