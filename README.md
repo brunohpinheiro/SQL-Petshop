@@ -1,4 +1,4 @@
-# SQL-Petshop
+# SQL - Projeto de banco de dados Petshop
 Projeto acadêmico colaborativo de banco de dados SQL desenvolvido no MySQL Workbench. Contempla o ciclo completo de dados: modelagem, criação de tabelas, povoamento e atualização. Implementa lógica avançada com Joins, Views, Procedures, Triggers e criação de Índices para otimização de consultas e automação de processos.
 
 ## Modelagem de Dados
