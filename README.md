@@ -30,18 +30,12 @@ IDE: MySQL Workbench
 ## Regras de Negócio (RN)
 Para garantir a consistência dos dados, o sistema segue as seguintes diretrizes:
 
-RN01: Atendimento exclusivo para a espécie canina.
-
-RN02: Fidelização: Um cliente deve possuir no mínimo 1 pet para constar no sistema.
-
-RN03: Propriedade: Cada pet pertence a um único cliente (relação 1:N).
-
-RN04: Agendamento: Cada registro de agendamento é restrito a um pet por vez.
-
-RN05: Composição: Um agendamento deve conter ao menos um serviço vinculado.
-
-RN06: O valor final do serviço é calculado multiplicando o Preço Base (PB) pelo multiplicador de porte:
-
+RN01: Atendimento exclusivo para a espécie canina.  
+RN02: Fidelização: Um cliente deve possuir no mínimo 1 pet para constar no sistema.  
+RN03: Propriedade: Cada pet pertence a um único cliente (relação 1:N).  
+RN04: Agendamento: Cada registro de agendamento é restrito a um pet por vez.  
+RN05: Composição: Um agendamento deve conter ao menos um serviço vinculado.  
+RN06: O valor final do serviço é calculado multiplicando o Preço Base (PB) pelo multiplicador de porte:  
 
 | Serviço | Preço Base (PB) |
 | :--- | :--- |
