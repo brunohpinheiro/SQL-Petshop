@@ -644,38 +644,47 @@ BEGIN
 END //
 DELIMITER ;
 
--- Triggers
--- Atualização dos preços nas tabelas AGENDAMENTO e AGENDAMENTO_SERVICO após INSERT
+-- Trigger da regra de negocio
+-- Atualizar valor_servico em AGENDAMENTO_SERVICO e valor_total em AGENDAMENTO quando:
+	-- Inserir novo agendamento de servico [OK]
+	-- Alterar servico agendado [ ]
+
+-- Define valor_servico em AGENDAMENTO_SERVICO ao inserir novo registro e atualiza valor_total em AGENDAMENTO
 DELIMITER //
-CREATE TRIGGER atualizar_precos_insert
-AFTER INSERT
-ON AGENDAMENTO_SERVICO FOR EACH ROW
+CREATE TRIGGER atualizar_preco_insert
+BEFORE INSERT 
+ON AGENDAMENTO_SERVICO 
+FOR EACH ROW
 BEGIN
-    -- Atualiza valor_servico em SERVICO
-    UPDATE AGENDAMENTO_SERVICO
-    JOIN (
-    SELECT id, valor_servico AS 
+	DECLARE valor_preco_base DECIMAL(5, 2);
+    DECLARE valor_percentual DECIMAL(4, 2);
+    DECLARE valor_total_atual DECIMAL(6, 2);
     
+    -- Busca preço base
+	SELECT preco INTO valor_preco_base 
+    FROM SERVICO 
+    WHERE id = NEW.id_servico;
+    
+    -- Buscar fator porte
+    SELECT PORTE.percentual INTO valor_percentual
+    FROM AGENDAMENTO
+    JOIN PET ON AGENDAMENTO.id_pet = PET.id
+    JOIN PORTE ON PET.id_porte = PORTE.id
+    WHERE AGENDAMENTO.id = NEW.id_agendamento;
+    
+    -- Define valor corrigido com base no porte
+    SET NEW.valor_servico = valor_preco_base * valor_percentual;
     
     -- Atualiza valor_total em AGENDAMENTO
-	UPDATE AGENDAMENTO ag
-	JOIN (
-	SELECT id_agendamento, SUM(valor_servico) AS total
-	FROM AGENDAMENTO_SERVICO AS aser
-	JOIN agendamento ON id_agendamento = agendamento.id
-	WHERE aser.ativo = TRUE AND agendamento.id_status in (select id from status where status not in ('Realizado','Cancelado'))
-	GROUP BY id_agendamento) resumo 
-	ON resumo.id_agendamento = ag.id
-	SET ag.valor_total = resumo.total;
+    -- Busca valor_total atual e armazena em variável
+    SELECT valor_total INTO valor_total_atual
+    FROM AGENDAMENTO
+    WHERE id = NEW.id_agendamento;
+    -- Soma o valor do serviço ao total
+    UPDATE AGENDAMENTO 
+    SET valor_total = valor_total_atual + NEW.valor_servico
+    WHERE id = NEW.id_agendamento;
 END //
 DELIMITER ;
 
--- Atualização dos preços nas tabelas AGENDAMENTO e AGENDAMENTO_SERVICO após UPDATE
-DELIMITER //
-CREATE TRIGGER atualizar_precos_update
-	AFTER UPDATE
-ON nome_da_tabela FOR EACH ROW
-BEGIN
-    -- O código que será executado entra aqui
-END //
-DELIMITER ;
+-- Define valor_servico em AGENDAMENTO_SERVICO ao atualizar serviço agedando e atualiza valor_total em AGENDAMENTO
